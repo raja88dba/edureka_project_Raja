@@ -56,6 +56,6 @@ try{
         }
 }
 catch(Exception ex){
-        echo "Some Exception Occured"
+        echo "Exception Occured"
         currentBuild.result = 'FAILURE'
 }
