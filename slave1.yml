@@ -1,0 +1,24 @@
+---
+- hosts: slave1
+  become: yes
+  tasks:
+  - name: Install Git
+    apt:
+      pkg: git
+      state: present
+      update_cache: yes
+  - name: Install JDK 11
+    apt:
+      pkg: openjdk-11-jdk
+      state: present
+  - name: Install Docker
+    apt:
+      pkg: docker.io
+      state: present
+    notify:
+    - apt cache update
+  - name: Start Docker Service
+    service:
+      name: docker
+      state: started
+      enabled: yes
