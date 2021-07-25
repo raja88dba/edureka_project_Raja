@@ -22,3 +22,6 @@
       name: docker
       state: started
       enabled: yes
+  - name: apt cache update
+    apt:
+      update_cache: yes
