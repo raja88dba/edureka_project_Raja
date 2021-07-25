@@ -52,7 +52,8 @@ try{
                 ansiblePlaybook credentialsId: 'AnsibleSSH', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'slave2_deploy.yml'
             }
             currentBuild.result = 'SUCCESS'
-        }
+}
+}
 catch(Exception ex){
         echo "Some Exception Occured"
         currentBuild.result = 'FAILURE'
