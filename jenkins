@@ -14,7 +14,7 @@ try{
                 dockerCMD = "${docker}/bin/docker"
                 jdk = tool name: 'java11', type: 'jdk'
                 java = "${jdk}/bin/java"
-                dockerImage = "raja88dba/edureka_project_Raja"
+                dockerImage = "raja88dba/edureka-devops-cert-app"
                 tagName = "1.0"
                 gitURL = "https://github.com/raja88dba"
                 projectName = "edureka_project_Raja"
