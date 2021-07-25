@@ -1,0 +1,15 @@
+---
+- hosts: slave2
+  become: yes
+  vars:
+    dockerImage: "raja88dba/edureka_project_Raja"
+    tagName: "1.0"
+    containerName: "eudreka_raja_php_app"
+    applicationPort: "8888"
+  tasks:
+  - name: Ensure Docker Service is Running
+    service:
+      name: docker
+      state: started
+  - name: Run Docker for  PHP App
+    command: sudo docker run -d -p {{ applicationPort }}:80 --name {{ containerName }} {{ dockerImage }}:{{ tagName }}
