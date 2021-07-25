@@ -24,7 +24,7 @@ try{
                 git branch: 'main', credentialsId: 'GitHub', url: "${gitURL}/${projectName}.git"
 	        }
 	        stage('Provision Tool on slave1'){
-	            echo "Provisioning Tools for deployment  on slave1 "
+	            echo "ProvisionTools for deployment on slave1"
 	            ansiblePlaybook credentialsId: 'AnsibleSSH', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'slave1.yml'
 	        }
             stage('Build Docker Image'){
@@ -43,16 +43,16 @@ try{
                 ansiblePlaybook credentialsId: 'AnsibleSSH', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'slave1_deploy.yml'
             }
             
-               stage('Provision Tool on slave2'){
-	        echo "Provisioning Tools for deployment on slave2"
+	    stage('Provision Tool on slave2'){
+	        echo "Provisioning Tools deployment on Slave2"
 	        ansiblePlaybook credentialsId: 'AnsibleSSH', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'slave2.yml'
 	    }
-            stage('Deploy Application on Prod Server'){
-                echo "Deploying PHP App on slave2"
+            stage('Deploy Application on slave2'){
+                echo "Deploying  PHP App on slave2"
                 ansiblePlaybook credentialsId: 'AnsibleSSH', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'slave2_deploy.yml'
             }
             currentBuild.result = 'SUCCESS'
-}
+        }
 catch(Exception ex){
         echo "Some Exception Occured"
         currentBuild.result = 'FAILURE'
