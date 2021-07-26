@@ -31,12 +31,6 @@ try{
                 echo "Build Docker image from Dockerfile"
                 sh "sudo ${dockerCMD} build -t ${dockerImage}:${tagName} ."
             }
-            stage('Push to DockerHub'){
-                echo "Push Docker Image to DockerHub Online Registry"
-                withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerHubPwd', usernameVariable: 'dockerHubUsername')]) {
-                    sh "sudo ${dockerCMD} login -u ${dockerHubUsername} -p ${dockerHubPwd}"
-                    sh "sudo ${dockerCMD} push ${dockerImage}:${tagName}"
-                }
             }
             stage('Deploy Application on slave1'){
                 echo "Deploying PHP App on slave1"
